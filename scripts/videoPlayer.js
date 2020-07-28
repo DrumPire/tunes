@@ -8,8 +8,6 @@ export const videoPlayerInit = () => {
   const videoVolume = document.querySelector('.video-volume');
   const videoFullScreen = document.querySelector('.video-fullscreen');
 
-  
-
   const toggleIcon = () => {
     if( videoPlayer.paused ){
       videoButtonPlay.classList.remove('fa-pause');
@@ -44,8 +42,7 @@ export const videoPlayerInit = () => {
   videoButtonStop.addEventListener('click', stopPlay);
 
   videoPlayer.addEventListener('timeupdate', () => {
-    const currentTime = videoPlayer.currentTime;
-    const duration = videoPlayer.duration;
+    const { currentTime, duration } = videoPlayer;
 
     videoProgress.value = (currentTime / duration) * 100;
     
@@ -61,8 +58,8 @@ export const videoPlayerInit = () => {
   });
 
   videoProgress.addEventListener('input', () => {
-    const duration = videoPlayer.duration;
-    const value = videoProgress.value;
+    const { duration } = videoPlayer;
+    const { value } = videoProgress;
 
     videoPlayer.currentTime = (value * duration) / 100;
   });
